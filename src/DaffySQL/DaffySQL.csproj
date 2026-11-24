@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    DaffySQL: SQL Server as DuckDB table functions, which daffydb.sqlserver mounts through. It is a
+    project of its own, not folders in TdsProxy, because it needs unsafe code and TdsProxy does not,
+    and because its TDS client has types named as TdsProxy's TDS server's are (TdsConstants, Login7,
+    PacketWriter...); as a separate assembly they never meet. The tool package carries it as it
+    carries any project reference, so it is never a package of its own.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>DaffySQL</RootNamespace>
+    <IsPackable>false</IsPackable>
+
+    <!-- DuckDB's C API is called through function pointers, and its vectors are written through raw pointers. -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <!--
+    The same DuckDB.NET as TdsProxy, always: DaffySQL calls into the DuckDB that DuckDB.NET loaded,
+    by name, and DuckApi.Load fails at startup naming any C API function a new version lacks.
+  -->
+  <ItemGroup>
+    <PackageReference Include="DuckDB.NET.Data.Full" Version="1.5.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DaffySQL.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    The project keeps its original name and namespace; only the shipped identity changes.
+    PackageId is what NuGet serves, ToolCommandName is what you type, and RootNamespace stays
+    TdsProxy because nothing outside this file ever sees it.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>TdsProxy</RootNamespace>
+    <AssemblyName>daffydb</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>daffydb</ToolCommandName>
+    <PackageId>DaffyDB</PackageId>
+
+    <!--
+      DuckDB's native library is 317 MB across the five platforms the Full package carries. A
+      RID-agnostic tool package would ship all of them to everyone; these produce one package per
+      platform plus a thin DaffyDB that resolves to the right one, so a Windows install is ~12 MB.
+
+      RuntimeIdentifiers is required as well as ToolPackageRuntimeIdentifiers, and not decorative:
+      pack builds one inner publish per RID, and restore refuses those with NETSDK1047 unless the
+      assets file already carries a target for each. Ordinary build and run stay RID-agnostic,
+      because a plural RuntimeIdentifiers only tells restore what to fetch.
+    -->
+    <ToolPackageRuntimeIdentifiers>win-x64;linux-x64</ToolPackageRuntimeIdentifiers>
+    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>1.4.0</Version>
+    <Authors>TroBeeOne LLC</Authors>
+    <Company>TroBeeOne LLC</Company>
+    <Copyright>Copyright (c) 2026 TroBeeOne LLC</Copyright>
+    <Title>DaffyDB</Title>
+    <Description>Query Parquet, CSV, JSON and Excel files with any SQL Server client. DaffyDB listens on port 1433 and speaks the Tabular Data Stream wire protocol, so Management Studio, sqlcmd, ADO.NET and anything else that connects to SQL Server can read a folder of data files directly. Execution is DuckDB. Early release.</Description>
+    <PackageTags>duckdb;parquet;csv;json;excel;xlsx;tds;sql;query;cli;dotnet-tool;analytics;ado-net</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DuckDB.NET.Data.Full" Version="1.5.5" />
+    <PackageReference Include="Sylvan.Data.Excel" Version="0.5.8" />
+  </ItemGroup>
+
+  <!-- SQL Server as DuckDB table functions, for daffydb.sqlserver. The tool package carries it. -->
+  <ItemGroup>
+    <ProjectReference Include="..\DaffySQL\DaffySQL.csproj" />
+  </ItemGroup>
+
+  <!--
+    The package page gets NUGET.md rather than the repository README, which is written for someone
+    with the source checked out. THIRD-PARTY-NOTICES.txt travels with the package because a tool
+    package bundles its dependencies' binaries, which is redistribution.
+
+    All four live at the repository root, which is why each is reached with ..\.. rather than
+    being copied somewhere tidier: one place to edit, and no stale duplicate to forget about.
+  -->
+  <ItemGroup>
+    <None Include="..\..\NUGET.md" Pack="true" PackagePath="README.md" />
+    <None Include="..\..\THIRD-PARTY-NOTICES.txt" Pack="true" PackagePath="\" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

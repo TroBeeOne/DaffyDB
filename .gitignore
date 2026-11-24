@@ -1,0 +1,21 @@
+bin/
+obj/
+captures/
+*.user
+.vs/
+data/
+certs/
+nupkg/
+context/
+TestResults/
+
+# packages, keys and certificates never belong in the repository
+*.nupkg
+*.snupkg
+*.pfx
+*.p12
+*.pem
+*.key
+*.cer
+.env
+.env.*

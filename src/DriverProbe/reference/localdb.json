@@ -1,0 +1,1509 @@
+{
+  "Source": "LocalDB (MSSQLLocalDB)",
+  "RecordedAt": "2026-10-18 20:14:12Z",
+  "Checks": [
+    {
+      "Id": "sql    connect",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"n","Type":"int","Size":4,"Nullable":false}
+          ],
+          "RowCount": 1,
+          "Rows": [
+            ["1"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "odbc   connect",
+      "Error": null,
+      "Sets": []
+    },
+    {
+      "Id": "oledb  connect",
+      "Error": null,
+      "Sets": []
+    },
+    {
+      "Id": "sql    wizard: syscharsets",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"name","Type":"nvarchar","Size":128,"Nullable":false}
+          ],
+          "RowCount": 1,
+          "Rows": [
+            ["iso_1"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_tables catalogs",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_QUALIFIER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_OWNER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_TYPE","Type":"varchar","Size":32,"Nullable":true},
+            {"Name":"REMARKS","Type":"varchar","Size":254,"Nullable":true}
+          ],
+          "RowCount": 4,
+          "Rows": [
+            ["master",null,null,null,null],
+            ["msdb",null,null,null,null],
+            ["daffydb",null,null,null,null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_tables TABLE,VIEW",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_QUALIFIER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_OWNER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_TYPE","Type":"varchar","Size":32,"Nullable":true},
+            {"Name":"REMARKS","Type":"varchar","Size":254,"Nullable":true}
+          ],
+          "RowCount": 633,
+          "Rows": [
+            ["daffydb","dbo","customers","TABLE",null],
+            ["daffydb","dbo","orders","TABLE",null],
+            ["daffydb","dbo","type_zoo","TABLE",null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_columns_100 customers",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_QUALIFIER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_OWNER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DATA_TYPE","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"TYPE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PRECISION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"LENGTH","Type":"int","Size":4,"Nullable":true},
+            {"Name":"SCALE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"RADIX","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"NULLABLE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"REMARKS","Type":"varchar","Size":254,"Nullable":true},
+            {"Name":"COLUMN_DEF","Type":"nvarchar","Size":4000,"Nullable":true},
+            {"Name":"SQL_DATA_TYPE","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"SQL_DATETIME_SUB","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"CHAR_OCTET_LENGTH","Type":"int","Size":4,"Nullable":true},
+            {"Name":"ORDINAL_POSITION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"IS_NULLABLE","Type":"varchar","Size":254,"Nullable":true},
+            {"Name":"SS_IS_SPARSE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SS_IS_COLUMN_SET","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SS_IS_COMPUTED","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SS_IS_IDENTITY","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SS_UDT_CATALOG_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_SCHEMA_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_ASSEMBLY_TYPE_NAME","Type":"nvarchar","Size":4000,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_CATALOG_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_SCHEMA_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_DATA_TYPE","Type":"tinyint","Size":1,"Nullable":true}
+          ],
+          "RowCount": 5,
+          "Rows": [
+            ["daffydb","dbo","customers","customer_id","4","int","10","4","0","10","1",null,null,"4",null,null,"1","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","customers","name","-9","nvarchar","4000","8000",null,null,"1",null,null,"-9",null,"8000","2","YES","0","0","0","0",null,null,null,null,null,null,"39"],
+            ["daffydb","dbo","customers","city","-9","nvarchar","4000","8000",null,null,"1",null,null,"-9",null,"8000","3","YES","0","0","0","0",null,null,null,null,null,null,"39"],
+            ["daffydb","dbo","customers","is_active","-7","bit","1","1",null,null,"1",null,null,"-7",null,null,"4","YES","0","0","0","0",null,null,null,null,null,null,"50"],
+            ["daffydb","dbo","customers","signup_date","91","date","10","6","0",null,"1",null,null,"9","1",null,"5","YES","0","0","0","0",null,null,null,null,null,null,"0"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_columns_100 orders",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_QUALIFIER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_OWNER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DATA_TYPE","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"TYPE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PRECISION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"LENGTH","Type":"int","Size":4,"Nullable":true},
+            {"Name":"SCALE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"RADIX","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"NULLABLE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"REMARKS","Type":"varchar","Size":254,"Nullable":true},
+            {"Name":"COLUMN_DEF","Type":"nvarchar","Size":4000,"Nullable":true},
+            {"Name":"SQL_DATA_TYPE","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"SQL_DATETIME_SUB","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"CHAR_OCTET_LENGTH","Type":"int","Size":4,"Nullable":true},
+            {"Name":"ORDINAL_POSITION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"IS_NULLABLE","Type":"varchar","Size":254,"Nullable":true},
+            {"Name":"SS_IS_SPARSE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SS_IS_COLUMN_SET","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SS_IS_COMPUTED","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SS_IS_IDENTITY","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SS_UDT_CATALOG_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_SCHEMA_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_ASSEMBLY_TYPE_NAME","Type":"nvarchar","Size":4000,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_CATALOG_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_SCHEMA_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_DATA_TYPE","Type":"tinyint","Size":1,"Nullable":true}
+          ],
+          "RowCount": 6,
+          "Rows": [
+            ["daffydb","dbo","orders","order_id","4","int","10","4","0","10","1",null,null,"4",null,null,"1","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","orders","customer_id","4","int","10","4","0","10","1",null,null,"4",null,null,"2","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","orders","product","-9","nvarchar","4000","8000",null,null,"1",null,null,"-9",null,"8000","3","YES","0","0","0","0",null,null,null,null,null,null,"39"],
+            ["daffydb","dbo","orders","quantity","4","int","10","4","0","10","1",null,null,"4",null,null,"4","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","orders","unit_price","3","decimal","10","12","2","10","1",null,null,"3",null,null,"5","YES","0","0","0","0",null,null,null,null,null,null,"106"],
+            ["daffydb","dbo","orders","order_ts","93","datetime2","27","16","7",null,"1",null,null,"9","3",null,"6","YES","0","0","0","0",null,null,null,null,null,null,"0"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_columns_100 type_zoo",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_QUALIFIER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_OWNER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DATA_TYPE","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"TYPE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PRECISION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"LENGTH","Type":"int","Size":4,"Nullable":true},
+            {"Name":"SCALE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"RADIX","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"NULLABLE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"REMARKS","Type":"varchar","Size":254,"Nullable":true},
+            {"Name":"COLUMN_DEF","Type":"nvarchar","Size":4000,"Nullable":true},
+            {"Name":"SQL_DATA_TYPE","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"SQL_DATETIME_SUB","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"CHAR_OCTET_LENGTH","Type":"int","Size":4,"Nullable":true},
+            {"Name":"ORDINAL_POSITION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"IS_NULLABLE","Type":"varchar","Size":254,"Nullable":true},
+            {"Name":"SS_IS_SPARSE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SS_IS_COLUMN_SET","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SS_IS_COMPUTED","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SS_IS_IDENTITY","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SS_UDT_CATALOG_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_SCHEMA_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_ASSEMBLY_TYPE_NAME","Type":"nvarchar","Size":4000,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_CATALOG_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_SCHEMA_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_DATA_TYPE","Type":"tinyint","Size":1,"Nullable":true}
+          ],
+          "RowCount": 14,
+          "Rows": [
+            ["daffydb","dbo","type_zoo","c_tinyint","-6","tinyint","3","1","0","10","1",null,null,"-6",null,null,"1","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","type_zoo","c_smallint","5","smallint","5","2","0","10","1",null,null,"5",null,null,"2","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","type_zoo","c_int","4","int","10","4","0","10","1",null,null,"4",null,null,"3","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","type_zoo","c_bigint","-5","bigint","19","8","0","10","1",null,null,"-5",null,null,"4","YES","0","0","0","0",null,null,null,null,null,null,"108"],
+            ["daffydb","dbo","type_zoo","c_real","7","real","24","4",null,"2","1",null,null,"7",null,null,"5","YES","0","0","0","0",null,null,null,null,null,null,"109"],
+            ["daffydb","dbo","type_zoo","c_float","6","float","53","8",null,"2","1",null,null,"6",null,null,"6","YES","0","0","0","0",null,null,null,null,null,null,"109"],
+            ["daffydb","dbo","type_zoo","c_decimal","3","decimal","10","12","2","10","1",null,null,"3",null,null,"7","YES","0","0","0","0",null,null,null,null,null,null,"106"],
+            ["daffydb","dbo","type_zoo","c_bit","-7","bit","1","1",null,null,"1",null,null,"-7",null,null,"8","YES","0","0","0","0",null,null,null,null,null,null,"50"],
+            ["daffydb","dbo","type_zoo","c_date","91","date","10","6","0",null,"1",null,null,"9","1",null,"9","YES","0","0","0","0",null,null,null,null,null,null,"0"],
+            ["daffydb","dbo","type_zoo","c_time","-154","time","16","12","7",null,"1",null,null,"-154","0",null,"10","YES","0","0","0","0",null,null,null,null,null,null,"0"],
+            ["daffydb","dbo","type_zoo","c_datetime2","93","datetime2","27","16","7",null,"1",null,null,"9","3",null,"11","YES","0","0","0","0",null,null,null,null,null,null,"0"],
+            ["daffydb","dbo","type_zoo","c_nvarchar","-9","nvarchar","4000","8000",null,null,"1",null,null,"-9",null,"8000","12","YES","0","0","0","0",null,null,null,null,null,null,"39"],
+            ["daffydb","dbo","type_zoo","c_varbinary","-3","varbinary","8000","8000",null,null,"1",null,null,"-3",null,"8000","13","YES","0","0","0","0",null,null,null,null,null,null,"37"],
+            ["daffydb","dbo","type_zoo","c_guid","-11","uniqueidentifier","36","16",null,null,"1",null,null,"-11",null,null,"14","YES","0","0","0","0",null,null,null,null,null,null,"37"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_datatype_info_100",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TYPE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DATA_TYPE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"PRECISION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"LITERAL_PREFIX","Type":"varchar","Size":32,"Nullable":true},
+            {"Name":"LITERAL_SUFFIX","Type":"varchar","Size":32,"Nullable":true},
+            {"Name":"CREATE_PARAMS","Type":"varchar","Size":32,"Nullable":true},
+            {"Name":"NULLABLE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"CASE_SENSITIVE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SEARCHABLE","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"UNSIGNED_ATTRIBUTE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"MONEY","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"AUTO_INCREMENT","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"LOCAL_TYPE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"MINIMUM_SCALE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"MAXIMUM_SCALE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"SQL_DATA_TYPE","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"SQL_DATETIME_SUB","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"NUM_PREC_RADIX","Type":"int","Size":4,"Nullable":true},
+            {"Name":"INTERVAL_PRECISION","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"USERTYPE","Type":"smallint","Size":2,"Nullable":true}
+          ],
+          "RowCount": 37,
+          "Rows": [
+            ["datetimeoffset","-155","34","'","'","scale","1","0","3",null,"0",null,"datetimeoffset","0","7","-155","0",null,null,"0"],
+            ["time","-154","16","'","'","scale","1","0","3",null,"0",null,"time","0","7","-154","0",null,null,"0"],
+            ["xml","-152","0","N'","'",null,"1","1","0",null,"0",null,"xml",null,null,"-152",null,null,null,"0"],
+            ["sql_variant","-150","8000",null,null,null,"1","0","2",null,"0",null,"sql_variant","0","0","-150",null,"10",null,"0"],
+            ["uniqueidentifier","-11","36","'","'",null,"1","0","2",null,"0",null,"uniqueidentifier",null,null,"-11",null,null,null,"0"],
+            ["ntext","-10","1073741823","N'","'",null,"1","0","1",null,"0",null,"ntext",null,null,"-10",null,null,null,"0"],
+            ["nvarchar","-9","4000","N'","'","max length","1","0","3",null,"0",null,"nvarchar",null,null,"-9",null,null,null,"0"],
+            ["sysname","-9","128","N'","'",null,"0","0","3",null,"0",null,"sysname",null,null,"-9",null,null,null,"18"],
+            ["nchar","-8","4000","N'","'","length","1","0","3",null,"0",null,"nchar",null,null,"-8",null,null,null,"0"],
+            ["bit","-7","1",null,null,null,"1","0","2",null,"0",null,"bit","0","0","-7",null,null,null,"16"],
+            ["tinyint","-6","3",null,null,null,"1","0","2","1","0","0","tinyint","0","0","-6",null,"10",null,"5"],
+            ["tinyint identity","-6","3",null,null,null,"0","0","2","1","0","1","tinyint identity","0","0","-6",null,"10",null,"5"],
+            ["bigint","-5","19",null,null,null,"1","0","2","0","0","0","bigint","0","0","-5",null,"10",null,"0"],
+            ["bigint identity","-5","19",null,null,null,"0","0","2","0","0","1","bigint identity","0","0","-5",null,"10",null,"0"],
+            ["image","-4","2147483647","0x",null,null,"1","0","0",null,"0",null,"image",null,null,"-4",null,null,null,"20"],
+            ["varbinary","-3","8000","0x",null,"max length","1","0","2",null,"0",null,"varbinary",null,null,"-3",null,null,null,"4"],
+            ["binary","-2","8000","0x",null,"length","1","0","2",null,"0",null,"binary",null,null,"-2",null,null,null,"3"],
+            ["timestamp","-2","8","0x",null,null,"0","0","2",null,"0",null,"timestamp",null,null,"-2",null,null,null,"80"],
+            ["text","-1","2147483647","'","'",null,"1","0","1",null,"0",null,"text",null,null,"-1",null,null,null,"19"],
+            ["char","1","8000","'","'","length","1","0","3",null,"0",null,"char",null,null,"1",null,null,null,"1"],
+            ["numeric","2","38",null,null,"precision,scale","1","0","2","0","0","0","numeric","0","38","2",null,"10",null,"10"],
+            ["numeric() identity","2","38",null,null,"precision","0","0","2","0","0","1","numeric() identity","0","0","2",null,"10",null,"10"],
+            ["decimal","3","38",null,null,"precision,scale","1","0","2","0","0","0","decimal","0","38","3",null,"10",null,"24"],
+            ["money","3","19","$",null,null,"1","0","2","0","1","0","money","4","4","3",null,"10",null,"11"],
+            ["smallmoney","3","10","$",null,null,"1","0","2","0","1","0","smallmoney","4","4","3",null,"10",null,"21"],
+            ["decimal() identity","3","38",null,null,"precision","0","0","2","0","0","1","decimal() identity","0","0","3",null,"10",null,"24"],
+            ["int","4","10",null,null,null,"1","0","2","0","0","0","int","0","0","4",null,"10",null,"7"],
+            ["int identity","4","10",null,null,null,"0","0","2","0","0","1","int identity","0","0","4",null,"10",null,"7"],
+            ["smallint","5","5",null,null,null,"1","0","2","0","0","0","smallint","0","0","5",null,"10",null,"6"],
+            ["smallint identity","5","5",null,null,null,"0","0","2","0","0","1","smallint identity","0","0","5",null,"10",null,"6"],
+            ["float","6","53",null,null,null,"1","0","2","0","0","0","float",null,null,"6",null,"2",null,"8"],
+            ["real","7","24",null,null,null,"1","0","2","0","0","0","real",null,null,"7",null,"2",null,"23"],
+            ["varchar","12","8000","'","'","max length","1","0","3",null,"0",null,"varchar",null,null,"12",null,null,null,"2"],
+            ["date","91","10","'","'",null,"1","0","3",null,"0",null,"date",null,"0","9","1",null,null,"0"],
+            ["datetime2","93","27","'","'","scale","1","0","3",null,"0",null,"datetime2","0","7","9","3",null,null,"0"],
+            ["datetime","93","23","'","'",null,"1","0","3",null,"0",null,"datetime","3","3","9","3",null,null,"12"],
+            ["smalldatetime","93","16","'","'",null,"1","0","3",null,"0",null,"smalldatetime","0","0","9","3",null,null,"22"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_pkeys",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_QUALIFIER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_OWNER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"KEY_SEQ","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"PK_NAME","Type":"nvarchar","Size":128,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_fkeys referencing",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"PKTABLE_QUALIFIER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PKTABLE_OWNER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PKTABLE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PKCOLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FKTABLE_QUALIFIER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FKTABLE_OWNER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FKTABLE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FKCOLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"KEY_SEQ","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"UPDATE_RULE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"DELETE_RULE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"FK_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PK_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DEFERRABILITY","Type":"smallint","Size":2,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_fkeys referenced",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"PKTABLE_QUALIFIER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PKTABLE_OWNER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PKTABLE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PKCOLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FKTABLE_QUALIFIER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FKTABLE_OWNER","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FKTABLE_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FKCOLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"KEY_SEQ","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"UPDATE_RULE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"DELETE_RULE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"FK_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PK_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DEFERRABILITY","Type":"smallint","Size":2,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "sql    import orders (odbc)",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"order_id","Type":"int","Size":4,"Nullable":true},
+            {"Name":"customer_id","Type":"int","Size":4,"Nullable":true},
+            {"Name":"product","Type":"nvarchar","Size":4000,"Nullable":true},
+            {"Name":"quantity","Type":"int","Size":4,"Nullable":true},
+            {"Name":"unit_price","Type":"decimal","Size":17,"Nullable":true},
+            {"Name":"order_ts","Type":"datetime2","Size":8,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_oledb_ro_usrname",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"","Type":"varchar","Size":1,"Nullable":true},
+            {"Name":"","Type":"nvarchar","Size":128,"Nullable":true}
+          ],
+          "RowCount": 1,
+          "Rows": [
+            ["N","dbo"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    collationname",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"","Type":"nvarchar","Size":128,"Nullable":true}
+          ],
+          "RowCount": 1,
+          "Rows": [
+            ["SQL_Latin1_General_CP1_CI_AS"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_catalogs_rowset2",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"CATALOG_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"DESCRIPTION","Type":"nvarchar","Size":1,"Nullable":true}
+          ],
+          "RowCount": 5,
+          "Rows": [
+            ["master",null],
+            ["msdb",null],
+            ["daffydb",null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_schemata_rowset",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"CATALOG_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SCHEMA_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"SCHEMA_OWNER","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"DEFAULT_CHARACTER_SET_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DEFAULT_CHARACTER_SET_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DEFAULT_CHARACTER_SET_NAME","Type":"nvarchar","Size":128,"Nullable":true}
+          ],
+          "RowCount": 3,
+          "Rows": [
+            ["daffydb","dbo","dbo","master","dbo",null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_tables_rowset2 dbo",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"TABLE_TYPE","Type":"nvarchar","Size":30,"Nullable":true},
+            {"Name":"TABLE_GUID","Type":"uniqueidentifier","Size":16,"Nullable":true},
+            {"Name":"DESCRIPTION","Type":"nvarchar","Size":1,"Nullable":true},
+            {"Name":"TABLE_PROPID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"DATE_CREATED","Type":"datetime","Size":8,"Nullable":false},
+            {"Name":"DATE_MODIFIED","Type":"datetime","Size":8,"Nullable":true}
+          ],
+          "RowCount": 3,
+          "Rows": [
+            ["daffydb","dbo","customers","TABLE",null,null,null,"<varies>",null],
+            ["daffydb","dbo","orders","TABLE",null,null,null,"<varies>",null],
+            ["daffydb","dbo","type_zoo","TABLE",null,null,null,"<varies>",null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_tables_rowset2 all",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"TABLE_TYPE","Type":"nvarchar","Size":30,"Nullable":true},
+            {"Name":"TABLE_GUID","Type":"uniqueidentifier","Size":16,"Nullable":true},
+            {"Name":"DESCRIPTION","Type":"nvarchar","Size":1,"Nullable":true},
+            {"Name":"TABLE_PROPID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"DATE_CREATED","Type":"datetime","Size":8,"Nullable":false},
+            {"Name":"DATE_MODIFIED","Type":"datetime","Size":8,"Nullable":true}
+          ],
+          "RowCount": 705,
+          "Rows": [
+            ["daffydb","dbo","customers","TABLE",null,null,null,"<varies>",null],
+            ["daffydb","dbo","orders","TABLE",null,null,null,"<varies>",null],
+            ["daffydb","dbo","type_zoo","TABLE",null,null,null,"<varies>",null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_columns_100_rowset orders",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"COLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLUMN_GUID","Type":"uniqueidentifier","Size":16,"Nullable":true},
+            {"Name":"COLUMN_PROPID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"ORDINAL_POSITION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"COLUMN_HASDEFAULT","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"COLUMN_DEFAULT","Type":"nvarchar","Size":2000,"Nullable":true},
+            {"Name":"COLUMN_FLAGS","Type":"int","Size":4,"Nullable":true},
+            {"Name":"IS_NULLABLE","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"DATA_TYPE","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"TYPE_GUID","Type":"uniqueidentifier","Size":16,"Nullable":true},
+            {"Name":"CHARACTER_MAXIMUM_LENGTH","Type":"int","Size":4,"Nullable":true},
+            {"Name":"CHARACTER_OCTET_LENGTH","Type":"int","Size":4,"Nullable":true},
+            {"Name":"NUMERIC_PRECISION","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"NUMERIC_SCALE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"DATETIME_PRECISION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"CHARACTER_SET_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"CHARACTER_SET_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"CHARACTER_SET_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLLATION_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLLATION_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLLATION_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DOMAIN_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DOMAIN_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DOMAIN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DESCRIPTION","Type":"nvarchar","Size":1,"Nullable":true},
+            {"Name":"COLUMN_LCID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"COLUMN_COMPFLAGS","Type":"int","Size":4,"Nullable":true},
+            {"Name":"COLUMN_SORTID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"COLUMN_TDSCOLLATION","Type":"binary","Size":5,"Nullable":true},
+            {"Name":"IS_COMPUTED","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_CATALOGNAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_SCHEMANAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTIONNAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_CATALOGNAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_SCHEMANAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_ASSEMBLY_TYPENAME","Type":"nvarchar","Size":4000,"Nullable":true},
+            {"Name":"SS_IS_SPARSE","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"SS_IS_COLUMN_SET","Type":"bit","Size":1,"Nullable":true}
+          ],
+          "RowCount": 6,
+          "Rows": [
+            ["daffydb","dbo","orders","order_id",null,null,"1","False",null,"116","True","3",null,null,null,"10",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","orders","customer_id",null,null,"2","False",null,"116","True","3",null,null,null,"10",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","orders","product",null,null,"3","False",null,"100","True","130",null,"4000","8000",null,null,null,"master","dbo","iso_1","master","dbo","SQL_Latin1_General_CP1_CI_AS",null,null,null,null,"1033","196609","52","0x0904D00034","False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","orders","quantity",null,null,"4","False",null,"116","True","3",null,null,null,"10",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","orders","unit_price",null,null,"5","False",null,"116","True","131",null,null,null,"10","2",null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","orders","order_ts",null,null,"6","False",null,"1073741940","True","135",null,null,null,null,null,"7",null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_columns_100_rowset type_zoo",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"COLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLUMN_GUID","Type":"uniqueidentifier","Size":16,"Nullable":true},
+            {"Name":"COLUMN_PROPID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"ORDINAL_POSITION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"COLUMN_HASDEFAULT","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"COLUMN_DEFAULT","Type":"nvarchar","Size":2000,"Nullable":true},
+            {"Name":"COLUMN_FLAGS","Type":"int","Size":4,"Nullable":true},
+            {"Name":"IS_NULLABLE","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"DATA_TYPE","Type":"smallint","Size":2,"Nullable":false},
+            {"Name":"TYPE_GUID","Type":"uniqueidentifier","Size":16,"Nullable":true},
+            {"Name":"CHARACTER_MAXIMUM_LENGTH","Type":"int","Size":4,"Nullable":true},
+            {"Name":"CHARACTER_OCTET_LENGTH","Type":"int","Size":4,"Nullable":true},
+            {"Name":"NUMERIC_PRECISION","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"NUMERIC_SCALE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"DATETIME_PRECISION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"CHARACTER_SET_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"CHARACTER_SET_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"CHARACTER_SET_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLLATION_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLLATION_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLLATION_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DOMAIN_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DOMAIN_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DOMAIN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DESCRIPTION","Type":"nvarchar","Size":1,"Nullable":true},
+            {"Name":"COLUMN_LCID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"COLUMN_COMPFLAGS","Type":"int","Size":4,"Nullable":true},
+            {"Name":"COLUMN_SORTID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"COLUMN_TDSCOLLATION","Type":"binary","Size":5,"Nullable":true},
+            {"Name":"IS_COMPUTED","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_CATALOGNAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_SCHEMANAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTIONNAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_CATALOGNAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_SCHEMANAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_ASSEMBLY_TYPENAME","Type":"nvarchar","Size":4000,"Nullable":true},
+            {"Name":"SS_IS_SPARSE","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"SS_IS_COLUMN_SET","Type":"bit","Size":1,"Nullable":true}
+          ],
+          "RowCount": 14,
+          "Rows": [
+            ["daffydb","dbo","type_zoo","c_tinyint",null,null,"1","False",null,"116","True","17",null,null,null,"3",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_smallint",null,null,"2","False",null,"116","True","2",null,null,null,"5",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_int",null,null,"3","False",null,"116","True","3",null,null,null,"10",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_bigint",null,null,"4","False",null,"116","True","20",null,null,null,"19",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_real",null,null,"5","False",null,"116","True","4",null,null,null,"7",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_float",null,null,"6","False",null,"116","True","5",null,null,null,"15",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_decimal",null,null,"7","False",null,"116","True","131",null,null,null,"10","2",null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_bit",null,null,"8","False",null,"116","True","11",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_date",null,null,"9","False",null,"116","True","133",null,null,null,null,null,"0",null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_time",null,null,"10","False",null,"1073741940","True","145",null,null,null,null,null,"7",null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_datetime2",null,null,"11","False",null,"1073741940","True","135",null,null,null,null,null,"7",null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_nvarchar",null,null,"12","False",null,"100","True","130",null,"4000","8000",null,null,null,"master","dbo","iso_1","master","dbo","SQL_Latin1_General_CP1_CI_AS",null,null,null,null,"1033","196609","52","0x0904D00034","False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_varbinary",null,null,"13","False",null,"100","True","128",null,"8000","8000",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_guid",null,null,"14","False",null,"116","True","72",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_foreign_keys_rowset",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"PK_TABLE_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PK_TABLE_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PK_TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"PK_COLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PK_COLUMN_GUID","Type":"uniqueidentifier","Size":16,"Nullable":true},
+            {"Name":"PK_COLUMN_PROPID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"FK_TABLE_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FK_TABLE_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FK_TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"FK_COLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FK_COLUMN_GUID","Type":"uniqueidentifier","Size":16,"Nullable":true},
+            {"Name":"FK_COLUMN_PROPID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"ORDINAL","Type":"int","Size":4,"Nullable":true},
+            {"Name":"UPDATE_RULE","Type":"nvarchar","Size":11,"Nullable":false},
+            {"Name":"DELETE_RULE","Type":"nvarchar","Size":11,"Nullable":false},
+            {"Name":"PK_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FK_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DEFERRABILITY","Type":"smallint","Size":2,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_foreign_keys_rowset2",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"PK_TABLE_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PK_TABLE_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PK_TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"PK_COLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PK_COLUMN_GUID","Type":"uniqueidentifier","Size":16,"Nullable":true},
+            {"Name":"PK_COLUMN_PROPID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"FK_TABLE_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FK_TABLE_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FK_TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"FK_COLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FK_COLUMN_GUID","Type":"uniqueidentifier","Size":16,"Nullable":true},
+            {"Name":"FK_COLUMN_PROPID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"ORDINAL","Type":"int","Size":4,"Nullable":true},
+            {"Name":"UPDATE_RULE","Type":"nvarchar","Size":11,"Nullable":false},
+            {"Name":"DELETE_RULE","Type":"nvarchar","Size":11,"Nullable":false},
+            {"Name":"PK_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"FK_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"DEFERRABILITY","Type":"smallint","Size":2,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "sql    sp_indexes_100_rowset",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"INDEX_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"INDEX_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"INDEX_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"PRIMARY_KEY","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"UNIQUE","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"CLUSTERED","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"TYPE","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"FILL_FACTOR","Type":"int","Size":4,"Nullable":true},
+            {"Name":"INITIAL_SIZE","Type":"int","Size":4,"Nullable":true},
+            {"Name":"NULLS","Type":"int","Size":4,"Nullable":true},
+            {"Name":"SORT_BOOKMARKS","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"AUTO_UPDATE","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"NULL_COLLATION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"ORDINAL_POSITION","Type":"int","Size":4,"Nullable":true},
+            {"Name":"COLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"COLUMN_GUID","Type":"uniqueidentifier","Size":16,"Nullable":true},
+            {"Name":"COLUMN_PROPID","Type":"int","Size":4,"Nullable":true},
+            {"Name":"COLLATION","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"CARDINALITY","Type":"int","Size":4,"Nullable":true},
+            {"Name":"PAGES","Type":"int","Size":4,"Nullable":true},
+            {"Name":"FILTER_CONDITION","Type":"nvarchar","Size":2147483647,"Nullable":true},
+            {"Name":"INTEGRATED","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"STATUS","Type":"int","Size":4,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "sql    import orders (oledb)",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"order_id","Type":"int","Size":4,"Nullable":true},
+            {"Name":"customer_id","Type":"int","Size":4,"Nullable":true},
+            {"Name":"product","Type":"nvarchar","Size":4000,"Nullable":true},
+            {"Name":"quantity","Type":"int","Size":4,"Nullable":true},
+            {"Name":"unit_price","Type":"decimal","Size":17,"Nullable":true},
+            {"Name":"order_ts","Type":"datetime2","Size":8,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "odbc   SQLTables catalogs",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CAT","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"TABLE_SCHEM","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"TABLE_TYPE","Type":"SQL_VARCHAR","Size":32,"Nullable":true},
+            {"Name":"REMARKS","Type":"SQL_VARCHAR","Size":254,"Nullable":true}
+          ],
+          "RowCount": 4,
+          "Rows": [
+            ["master",null,null,null,null],
+            ["msdb",null,null,null,null],
+            ["daffydb",null,null,null,null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "odbc   SQLTables TABLE,VIEW",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CAT","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"TABLE_SCHEM","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"TABLE_TYPE","Type":"SQL_VARCHAR","Size":32,"Nullable":true},
+            {"Name":"REMARKS","Type":"SQL_VARCHAR","Size":254,"Nullable":true}
+          ],
+          "RowCount": 633,
+          "Rows": [
+            ["daffydb","dbo","customers","TABLE",null],
+            ["daffydb","dbo","orders","TABLE",null],
+            ["daffydb","dbo","type_zoo","TABLE",null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "odbc   SQLColumns orders",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CAT","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"TABLE_SCHEM","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"COLUMN_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"DATA_TYPE","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"TYPE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"COLUMN_SIZE","Type":"SQL_INTEGER","Size":10,"Nullable":true},
+            {"Name":"BUFFER_LENGTH","Type":"SQL_INTEGER","Size":10,"Nullable":true},
+            {"Name":"DECIMAL_DIGITS","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"NUM_PREC_RADIX","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"NULLABLE","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"REMARKS","Type":"SQL_VARCHAR","Size":254,"Nullable":true},
+            {"Name":"COLUMN_DEF","Type":"SQL_WVARCHAR","Size":4000,"Nullable":true},
+            {"Name":"SQL_DATA_TYPE","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"SQL_DATETIME_SUB","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"CHAR_OCTET_LENGTH","Type":"SQL_INTEGER","Size":10,"Nullable":true},
+            {"Name":"ORDINAL_POSITION","Type":"SQL_INTEGER","Size":10,"Nullable":false},
+            {"Name":"IS_NULLABLE","Type":"SQL_VARCHAR","Size":254,"Nullable":true},
+            {"Name":"SS_IS_SPARSE","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"SS_IS_COLUMN_SET","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"SS_IS_COMPUTED","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"SS_IS_IDENTITY","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"SS_UDT_CATALOG_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_SCHEMA_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_ASSEMBLY_TYPE_NAME","Type":"SQL_WVARCHAR","Size":4000,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_CATALOG_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_SCHEMA_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"SS_DATA_TYPE","Type":"SQL_TINYINT","Size":3,"Nullable":true}
+          ],
+          "RowCount": 6,
+          "Rows": [
+            ["daffydb","dbo","orders","order_id","4","int","10","4","0","10","1",null,null,"4",null,null,"1","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","orders","customer_id","4","int","10","4","0","10","1",null,null,"4",null,null,"2","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","orders","product","-9","nvarchar","4000","8000",null,null,"1",null,null,"-9",null,"8000","3","YES","0","0","0","0",null,null,null,null,null,null,"39"],
+            ["daffydb","dbo","orders","quantity","4","int","10","4","0","10","1",null,null,"4",null,null,"4","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","orders","unit_price","3","decimal","10","12","2","10","1",null,null,"3",null,null,"5","YES","0","0","0","0",null,null,null,null,null,null,"106"],
+            ["daffydb","dbo","orders","order_ts","93","datetime2","27","16","7",null,"1",null,null,"9","3",null,"6","YES","0","0","0","0",null,null,null,null,null,null,"0"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "odbc   SQLColumns type_zoo",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CAT","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"TABLE_SCHEM","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"COLUMN_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"DATA_TYPE","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"TYPE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"COLUMN_SIZE","Type":"SQL_INTEGER","Size":10,"Nullable":true},
+            {"Name":"BUFFER_LENGTH","Type":"SQL_INTEGER","Size":10,"Nullable":true},
+            {"Name":"DECIMAL_DIGITS","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"NUM_PREC_RADIX","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"NULLABLE","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"REMARKS","Type":"SQL_VARCHAR","Size":254,"Nullable":true},
+            {"Name":"COLUMN_DEF","Type":"SQL_WVARCHAR","Size":4000,"Nullable":true},
+            {"Name":"SQL_DATA_TYPE","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"SQL_DATETIME_SUB","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"CHAR_OCTET_LENGTH","Type":"SQL_INTEGER","Size":10,"Nullable":true},
+            {"Name":"ORDINAL_POSITION","Type":"SQL_INTEGER","Size":10,"Nullable":false},
+            {"Name":"IS_NULLABLE","Type":"SQL_VARCHAR","Size":254,"Nullable":true},
+            {"Name":"SS_IS_SPARSE","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"SS_IS_COLUMN_SET","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"SS_IS_COMPUTED","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"SS_IS_IDENTITY","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"SS_UDT_CATALOG_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_SCHEMA_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"SS_UDT_ASSEMBLY_TYPE_NAME","Type":"SQL_WVARCHAR","Size":4000,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_CATALOG_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_SCHEMA_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"SS_DATA_TYPE","Type":"SQL_TINYINT","Size":3,"Nullable":true}
+          ],
+          "RowCount": 14,
+          "Rows": [
+            ["daffydb","dbo","type_zoo","c_tinyint","-6","tinyint","3","1","0","10","1",null,null,"-6",null,null,"1","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","type_zoo","c_smallint","5","smallint","5","2","0","10","1",null,null,"5",null,null,"2","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","type_zoo","c_int","4","int","10","4","0","10","1",null,null,"4",null,null,"3","YES","0","0","0","0",null,null,null,null,null,null,"38"],
+            ["daffydb","dbo","type_zoo","c_bigint","-5","bigint","19","8","0","10","1",null,null,"-5",null,null,"4","YES","0","0","0","0",null,null,null,null,null,null,"108"],
+            ["daffydb","dbo","type_zoo","c_real","7","real","24","4",null,"2","1",null,null,"7",null,null,"5","YES","0","0","0","0",null,null,null,null,null,null,"109"],
+            ["daffydb","dbo","type_zoo","c_float","6","float","53","8",null,"2","1",null,null,"6",null,null,"6","YES","0","0","0","0",null,null,null,null,null,null,"109"],
+            ["daffydb","dbo","type_zoo","c_decimal","3","decimal","10","12","2","10","1",null,null,"3",null,null,"7","YES","0","0","0","0",null,null,null,null,null,null,"106"],
+            ["daffydb","dbo","type_zoo","c_bit","-7","bit","1","1",null,null,"1",null,null,"-7",null,null,"8","YES","0","0","0","0",null,null,null,null,null,null,"50"],
+            ["daffydb","dbo","type_zoo","c_date","91","date","10","6","0",null,"1",null,null,"9","1",null,"9","YES","0","0","0","0",null,null,null,null,null,null,"0"],
+            ["daffydb","dbo","type_zoo","c_time","-154","time","16","12","7",null,"1",null,null,"-154","0",null,"10","YES","0","0","0","0",null,null,null,null,null,null,"0"],
+            ["daffydb","dbo","type_zoo","c_datetime2","93","datetime2","27","16","7",null,"1",null,null,"9","3",null,"11","YES","0","0","0","0",null,null,null,null,null,null,"0"],
+            ["daffydb","dbo","type_zoo","c_nvarchar","-9","nvarchar","4000","8000",null,null,"1",null,null,"-9",null,"8000","12","YES","0","0","0","0",null,null,null,null,null,null,"39"],
+            ["daffydb","dbo","type_zoo","c_varbinary","-3","varbinary","8000","8000",null,null,"1",null,null,"-3",null,"8000","13","YES","0","0","0","0",null,null,null,null,null,null,"37"],
+            ["daffydb","dbo","type_zoo","c_guid","-11","uniqueidentifier","36","16",null,null,"1",null,null,"-11",null,null,"14","YES","0","0","0","0",null,null,null,null,null,null,"37"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "odbc   SQLGetTypeInfo",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TYPE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"DATA_TYPE","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"COLUMN_SIZE","Type":"SQL_INTEGER","Size":10,"Nullable":true},
+            {"Name":"LITERAL_PREFIX","Type":"SQL_VARCHAR","Size":32,"Nullable":true},
+            {"Name":"LITERAL_SUFFIX","Type":"SQL_VARCHAR","Size":32,"Nullable":true},
+            {"Name":"CREATE_PARAMS","Type":"SQL_VARCHAR","Size":32,"Nullable":true},
+            {"Name":"NULLABLE","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"CASE_SENSITIVE","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"SEARCHABLE","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"UNSIGNED_ATTRIBUTE","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"FIXED_PREC_SCALE","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"AUTO_UNIQUE_VALUE","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"LOCAL_TYPE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"MINIMUM_SCALE","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"MAXIMUM_SCALE","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"SQL_DATA_TYPE","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"SQL_DATETIME_SUB","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"NUM_PREC_RADIX","Type":"SQL_INTEGER","Size":10,"Nullable":true},
+            {"Name":"INTERVAL_PRECISION","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"USERTYPE","Type":"SQL_SMALLINT","Size":5,"Nullable":true}
+          ],
+          "RowCount": 37,
+          "Rows": [
+            ["datetimeoffset","-155","34","'","'","scale","1","0","3",null,"0",null,"datetimeoffset","0","7","-155","0",null,null,"0"],
+            ["time","-154","16","'","'","scale","1","0","3",null,"0",null,"time","0","7","-154","0",null,null,"0"],
+            ["xml","-152","0","N'","'",null,"1","1","0",null,"0",null,"xml",null,null,"-152",null,null,null,"0"],
+            ["sql_variant","-150","8000",null,null,null,"1","0","2",null,"0",null,"sql_variant","0","0","-150",null,"10",null,"0"],
+            ["uniqueidentifier","-11","36","'","'",null,"1","0","2",null,"0",null,"uniqueidentifier",null,null,"-11",null,null,null,"0"],
+            ["ntext","-10","1073741823","N'","'",null,"1","0","1",null,"0",null,"ntext",null,null,"-10",null,null,null,"0"],
+            ["nvarchar","-9","4000","N'","'","max length","1","0","3",null,"0",null,"nvarchar",null,null,"-9",null,null,null,"0"],
+            ["sysname","-9","128","N'","'",null,"0","0","3",null,"0",null,"sysname",null,null,"-9",null,null,null,"18"],
+            ["nchar","-8","4000","N'","'","length","1","0","3",null,"0",null,"nchar",null,null,"-8",null,null,null,"0"],
+            ["bit","-7","1",null,null,null,"1","0","2",null,"0",null,"bit","0","0","-7",null,null,null,"16"],
+            ["tinyint","-6","3",null,null,null,"1","0","2","1","0","0","tinyint","0","0","-6",null,"10",null,"5"],
+            ["tinyint identity","-6","3",null,null,null,"0","0","2","1","0","1","tinyint identity","0","0","-6",null,"10",null,"5"],
+            ["bigint","-5","19",null,null,null,"1","0","2","0","0","0","bigint","0","0","-5",null,"10",null,"0"],
+            ["bigint identity","-5","19",null,null,null,"0","0","2","0","0","1","bigint identity","0","0","-5",null,"10",null,"0"],
+            ["image","-4","2147483647","0x",null,null,"1","0","0",null,"0",null,"image",null,null,"-4",null,null,null,"20"],
+            ["varbinary","-3","8000","0x",null,"max length","1","0","2",null,"0",null,"varbinary",null,null,"-3",null,null,null,"4"],
+            ["binary","-2","8000","0x",null,"length","1","0","2",null,"0",null,"binary",null,null,"-2",null,null,null,"3"],
+            ["timestamp","-2","8","0x",null,null,"0","0","2",null,"0",null,"timestamp",null,null,"-2",null,null,null,"80"],
+            ["text","-1","2147483647","'","'",null,"1","0","1",null,"0",null,"text",null,null,"-1",null,null,null,"19"],
+            ["char","1","8000","'","'","length","1","0","3",null,"0",null,"char",null,null,"1",null,null,null,"1"],
+            ["numeric","2","38",null,null,"precision,scale","1","0","2","0","0","0","numeric","0","38","2",null,"10",null,"10"],
+            ["numeric() identity","2","38",null,null,"precision","0","0","2","0","0","1","numeric() identity","0","0","2",null,"10",null,"10"],
+            ["decimal","3","38",null,null,"precision,scale","1","0","2","0","0","0","decimal","0","38","3",null,"10",null,"24"],
+            ["money","3","19","$",null,null,"1","0","2","0","1","0","money","4","4","3",null,"10",null,"11"],
+            ["smallmoney","3","10","$",null,null,"1","0","2","0","1","0","smallmoney","4","4","3",null,"10",null,"21"],
+            ["decimal() identity","3","38",null,null,"precision","0","0","2","0","0","1","decimal() identity","0","0","3",null,"10",null,"24"],
+            ["int","4","10",null,null,null,"1","0","2","0","0","0","int","0","0","4",null,"10",null,"7"],
+            ["int identity","4","10",null,null,null,"0","0","2","0","0","1","int identity","0","0","4",null,"10",null,"7"],
+            ["smallint","5","5",null,null,null,"1","0","2","0","0","0","smallint","0","0","5",null,"10",null,"6"],
+            ["smallint identity","5","5",null,null,null,"0","0","2","0","0","1","smallint identity","0","0","5",null,"10",null,"6"],
+            ["float","6","53",null,null,null,"1","0","2","0","0","0","float",null,null,"6",null,"2",null,"8"],
+            ["real","7","24",null,null,null,"1","0","2","0","0","0","real",null,null,"7",null,"2",null,"23"],
+            ["varchar","12","8000","'","'","max length","1","0","3",null,"0",null,"varchar",null,null,"12",null,null,null,"2"],
+            ["date","91","10","'","'",null,"1","0","3",null,"0",null,"date",null,"0","9","1",null,null,"0"],
+            ["datetime2","93","27","'","'","scale","1","0","3",null,"0",null,"datetime2","0","7","9","3",null,null,"0"],
+            ["datetime","93","23","'","'",null,"1","0","3",null,"0",null,"datetime","3","3","9","3",null,null,"12"],
+            ["smalldatetime","93","16","'","'",null,"1","0","3",null,"0",null,"smalldatetime","0","0","9","3",null,null,"22"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "odbc   SQLPrimaryKeys orders",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CAT","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"TABLE_SCHEM","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"COLUMN_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"KEY_SEQ","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"PK_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "odbc   SQLForeignKeys referenced",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"PKTABLE_CAT","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"PKTABLE_SCHEM","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"PKTABLE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"PKCOLUMN_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"FKTABLE_CAT","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"FKTABLE_SCHEM","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"FKTABLE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"FKCOLUMN_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"KEY_SEQ","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"UPDATE_RULE","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"DELETE_RULE","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"FK_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"PK_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"DEFERRABILITY","Type":"SQL_SMALLINT","Size":5,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "odbc   SQLForeignKeys referencing",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"PKTABLE_CAT","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"PKTABLE_SCHEM","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"PKTABLE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"PKCOLUMN_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"FKTABLE_CAT","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"FKTABLE_SCHEM","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"FKTABLE_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"FKCOLUMN_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":false},
+            {"Name":"KEY_SEQ","Type":"SQL_SMALLINT","Size":5,"Nullable":false},
+            {"Name":"UPDATE_RULE","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"DELETE_RULE","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"FK_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"PK_NAME","Type":"SQL_WVARCHAR","Size":128,"Nullable":true},
+            {"Name":"DEFERRABILITY","Type":"SQL_SMALLINT","Size":5,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "oledb  CATALOGS",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"CATALOG_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DESCRIPTION","Type":"String","Size":-1,"Nullable":true}
+          ],
+          "RowCount": 5,
+          "Rows": [
+            ["master",null],
+            ["msdb",null],
+            ["daffydb",null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "oledb  SCHEMATA",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"CATALOG_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SCHEMA_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SCHEMA_OWNER","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DEFAULT_CHARACTER_SET_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DEFAULT_CHARACTER_SET_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DEFAULT_CHARACTER_SET_NAME","Type":"String","Size":-1,"Nullable":true}
+          ],
+          "RowCount": 3,
+          "Rows": [
+            ["daffydb","dbo","dbo","master","dbo",null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "oledb  TABLES dbo",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"TABLE_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"TABLE_TYPE","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"TABLE_GUID","Type":"Guid","Size":-1,"Nullable":true},
+            {"Name":"DESCRIPTION","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"TABLE_PROPID","Type":"Int64","Size":-1,"Nullable":true},
+            {"Name":"DATE_CREATED","Type":"DateTime","Size":-1,"Nullable":true},
+            {"Name":"DATE_MODIFIED","Type":"DateTime","Size":-1,"Nullable":true}
+          ],
+          "RowCount": 3,
+          "Rows": [
+            ["daffydb","dbo","customers","TABLE",null,null,null,"<varies>",null],
+            ["daffydb","dbo","orders","TABLE",null,null,null,"<varies>",null],
+            ["daffydb","dbo","type_zoo","TABLE",null,null,null,"<varies>",null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "oledb  COLUMNS orders",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"TABLE_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_GUID","Type":"Guid","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_PROPID","Type":"Int64","Size":-1,"Nullable":true},
+            {"Name":"ORDINAL_POSITION","Type":"Decimal","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_HASDEFAULT","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_DEFAULT","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_FLAGS","Type":"Int64","Size":-1,"Nullable":true},
+            {"Name":"IS_NULLABLE","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"DATA_TYPE","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"TYPE_GUID","Type":"Guid","Size":-1,"Nullable":true},
+            {"Name":"CHARACTER_MAXIMUM_LENGTH","Type":"Decimal","Size":-1,"Nullable":true},
+            {"Name":"CHARACTER_OCTET_LENGTH","Type":"Decimal","Size":-1,"Nullable":true},
+            {"Name":"NUMERIC_PRECISION","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"NUMERIC_SCALE","Type":"Int16","Size":-1,"Nullable":true},
+            {"Name":"DATETIME_PRECISION","Type":"Int64","Size":-1,"Nullable":true},
+            {"Name":"CHARACTER_SET_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"CHARACTER_SET_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"CHARACTER_SET_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLLATION_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLLATION_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLLATION_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DOMAIN_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DOMAIN_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DOMAIN_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DESCRIPTION","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_LCID","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_COMPFLAGS","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_SORTID","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_TDSCOLLATION","Type":"Byte[]","Size":-1,"Nullable":true},
+            {"Name":"IS_COMPUTED","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_CATALOGNAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_SCHEMANAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTIONNAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_UDT_CATALOGNAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_UDT_SCHEMANAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_UDT_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_UDT_ASSEMBLY_TYPENAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_IS_SPARSE","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"SS_IS_COLUMN_SET","Type":"Boolean","Size":-1,"Nullable":true}
+          ],
+          "RowCount": 6,
+          "Rows": [
+            ["daffydb","dbo","orders","order_id",null,null,"1","False",null,"116","True","3",null,null,null,"10",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","orders","customer_id",null,null,"2","False",null,"116","True","3",null,null,null,"10",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","orders","product",null,null,"3","False",null,"100","True","130",null,"4000","8000",null,null,null,"master","dbo","iso_1","master","dbo","SQL_Latin1_General_CP1_CI_AS",null,null,null,null,"1033","196609","52","0x0904D00034","False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","orders","quantity",null,null,"4","False",null,"116","True","3",null,null,null,"10",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","orders","unit_price",null,null,"5","False",null,"116","True","131",null,null,null,"10","2",null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","orders","order_ts",null,null,"6","False",null,"1073741940","True","135",null,null,null,null,null,"7",null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "oledb  COLUMNS type_zoo",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"TABLE_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_GUID","Type":"Guid","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_PROPID","Type":"Int64","Size":-1,"Nullable":true},
+            {"Name":"ORDINAL_POSITION","Type":"Decimal","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_HASDEFAULT","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_DEFAULT","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_FLAGS","Type":"Int64","Size":-1,"Nullable":true},
+            {"Name":"IS_NULLABLE","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"DATA_TYPE","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"TYPE_GUID","Type":"Guid","Size":-1,"Nullable":true},
+            {"Name":"CHARACTER_MAXIMUM_LENGTH","Type":"Decimal","Size":-1,"Nullable":true},
+            {"Name":"CHARACTER_OCTET_LENGTH","Type":"Decimal","Size":-1,"Nullable":true},
+            {"Name":"NUMERIC_PRECISION","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"NUMERIC_SCALE","Type":"Int16","Size":-1,"Nullable":true},
+            {"Name":"DATETIME_PRECISION","Type":"Int64","Size":-1,"Nullable":true},
+            {"Name":"CHARACTER_SET_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"CHARACTER_SET_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"CHARACTER_SET_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLLATION_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLLATION_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLLATION_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DOMAIN_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DOMAIN_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DOMAIN_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DESCRIPTION","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_LCID","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_COMPFLAGS","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_SORTID","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_TDSCOLLATION","Type":"Byte[]","Size":-1,"Nullable":true},
+            {"Name":"IS_COMPUTED","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_CATALOGNAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTION_SCHEMANAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_XML_SCHEMACOLLECTIONNAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_UDT_CATALOGNAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_UDT_SCHEMANAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_UDT_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_UDT_ASSEMBLY_TYPENAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"SS_IS_SPARSE","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"SS_IS_COLUMN_SET","Type":"Boolean","Size":-1,"Nullable":true}
+          ],
+          "RowCount": 14,
+          "Rows": [
+            ["daffydb","dbo","type_zoo","c_tinyint",null,null,"1","False",null,"116","True","17",null,null,null,"3",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_smallint",null,null,"2","False",null,"116","True","2",null,null,null,"5",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_int",null,null,"3","False",null,"116","True","3",null,null,null,"10",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_bigint",null,null,"4","False",null,"116","True","20",null,null,null,"19",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_real",null,null,"5","False",null,"116","True","4",null,null,null,"7",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_float",null,null,"6","False",null,"116","True","5",null,null,null,"15",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_decimal",null,null,"7","False",null,"116","True","131",null,null,null,"10","2",null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_bit",null,null,"8","False",null,"116","True","11",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_date",null,null,"9","False",null,"116","True","133",null,null,null,null,null,"0",null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_time",null,null,"10","False",null,"1073741940","True","145",null,null,null,null,null,"7",null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_datetime2",null,null,"11","False",null,"1073741940","True","135",null,null,null,null,null,"7",null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_nvarchar",null,null,"12","False",null,"100","True","130",null,"4000","8000",null,null,null,"master","dbo","iso_1","master","dbo","SQL_Latin1_General_CP1_CI_AS",null,null,null,null,"1033","196609","52","0x0904D00034","False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_varbinary",null,null,"13","False",null,"100","True","128",null,"8000","8000",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"],
+            ["daffydb","dbo","type_zoo","c_guid",null,null,"14","False",null,"116","True","72",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"52",null,"False",null,null,null,null,null,null,null,"False","False"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "oledb  FOREIGN_KEYS orders",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"PK_TABLE_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"PK_TABLE_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"PK_TABLE_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"PK_COLUMN_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"PK_COLUMN_GUID","Type":"Guid","Size":-1,"Nullable":true},
+            {"Name":"PK_COLUMN_PROPID","Type":"Int64","Size":-1,"Nullable":true},
+            {"Name":"FK_TABLE_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"FK_TABLE_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"FK_TABLE_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"FK_COLUMN_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"FK_COLUMN_GUID","Type":"Guid","Size":-1,"Nullable":true},
+            {"Name":"FK_COLUMN_PROPID","Type":"Int64","Size":-1,"Nullable":true},
+            {"Name":"ORDINAL","Type":"Decimal","Size":-1,"Nullable":true},
+            {"Name":"UPDATE_RULE","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DELETE_RULE","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"PK_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"FK_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"DEFERRABILITY","Type":"Int16","Size":-1,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "oledb  INDEXES orders",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"TABLE_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"INDEX_CATALOG","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"INDEX_SCHEMA","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"INDEX_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"PRIMARY_KEY","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"UNIQUE","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"CLUSTERED","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"TYPE","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"FILL_FACTOR","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"INITIAL_SIZE","Type":"Int64","Size":-1,"Nullable":true},
+            {"Name":"NULLS","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"SORT_BOOKMARKS","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"AUTO_UPDATE","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"NULL_COLLATION","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"ORDINAL_POSITION","Type":"Decimal","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_NAME","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_GUID","Type":"Guid","Size":-1,"Nullable":true},
+            {"Name":"COLUMN_PROPID","Type":"Int64","Size":-1,"Nullable":true},
+            {"Name":"COLLATION","Type":"Int16","Size":-1,"Nullable":true},
+            {"Name":"CARDINALITY","Type":"Decimal","Size":-1,"Nullable":true},
+            {"Name":"PAGES","Type":"Int32","Size":-1,"Nullable":true},
+            {"Name":"FILTER_CONDITION","Type":"String","Size":-1,"Nullable":true},
+            {"Name":"INTEGRATED","Type":"Boolean","Size":-1,"Nullable":true},
+            {"Name":"STATUS","Type":"Int32","Size":-1,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "sql    pbi: databases",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"Name","Type":"nvarchar","Size":128,"Nullable":false}
+          ],
+          "RowCount": 1,
+          "Rows": [
+            ["daffydb"]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    pbi: tables",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_CATALOG","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"TABLE_TYPE","Type":"varchar","Size":10,"Nullable":true},
+            {"Name":"CREATED_DATE","Type":"datetime","Size":8,"Nullable":false},
+            {"Name":"MODIFIED_DATE","Type":"datetime","Size":8,"Nullable":false},
+            {"Name":"DESCRIPTION","Type":"nvarchar","Size":2147483647,"Nullable":true}
+          ],
+          "RowCount": 3,
+          "Rows": [
+            ["daffydb","dbo","customers","BASE TABLE","<varies>","<varies>",null],
+            ["daffydb","dbo","orders","BASE TABLE","<varies>","<varies>",null],
+            ["daffydb","dbo","type_zoo","BASE TABLE","<varies>","<varies>",null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    pbi: routines",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"ROUTINE_SCHEMA","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"ROUTINE_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"ROUTINE_TYPE","Type":"nvarchar","Size":20,"Nullable":true},
+            {"Name":"CREATED_DATE","Type":"datetime","Size":8,"Nullable":false},
+            {"Name":"MODIFIED_DATE","Type":"datetime","Size":8,"Nullable":false},
+            {"Name":"DESCRIPTION","Type":"nvarchar","Size":2147483647,"Nullable":true}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "sql    pbi: columns orders",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"TABLE_SCHEMA","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"TABLE_NAME","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"COLUMN_NAME","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"ORDINAL_POSITION","Type":"bigint","Size":8,"Nullable":true},
+            {"Name":"IS_NULLABLE","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"DATA_TYPE","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"NUMERIC_PRECISION_RADIX","Type":"int","Size":4,"Nullable":true},
+            {"Name":"NUMERIC_PRECISION","Type":"tinyint","Size":1,"Nullable":false},
+            {"Name":"NUMERIC_SCALE","Type":"tinyint","Size":1,"Nullable":true},
+            {"Name":"DATETIME_PRECISION","Type":"tinyint","Size":1,"Nullable":true},
+            {"Name":"CHARACTER_MAXIMUM_LENGTH","Type":"int","Size":4,"Nullable":true},
+            {"Name":"DESCRIPTION","Type":"nvarchar","Size":2147483647,"Nullable":true},
+            {"Name":"COLUMN_DEFAULT","Type":"nvarchar","Size":2147483647,"Nullable":true},
+            {"Name":"COLUMN_EXPRESSION","Type":"nvarchar","Size":2147483647,"Nullable":true},
+            {"Name":"IS_WRITABLE","Type":"int","Size":4,"Nullable":false},
+            {"Name":"FIELD_CAPTION","Type":"int","Size":4,"Nullable":true}
+          ],
+          "RowCount": 6,
+          "Rows": [
+            ["dbo","orders","order_id","1","True","int","10","10","0",null,null,null,null,null,"1",null],
+            ["dbo","orders","customer_id","2","True","int","10","10","0",null,null,null,null,null,"1",null],
+            ["dbo","orders","product","3","True","nvarchar",null,"0","0",null,"4000",null,null,null,"1",null],
+            ["dbo","orders","quantity","4","True","int","10","10","0",null,null,null,null,null,"1",null],
+            ["dbo","orders","unit_price","5","True","decimal","10","10","2",null,null,null,null,null,"1",null],
+            ["dbo","orders","order_ts","6","True","datetime2",null,"27","7","7",null,null,null,null,"1",null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "sql    pbi: foreign keys",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"FK_NAME","Type":"nvarchar","Size":30,"Nullable":true},
+            {"Name":"ORDINAL","Type":"bigint","Size":8,"Nullable":true},
+            {"Name":"TABLE_SCHEMA_1","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"TABLE_NAME_1","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"PK_COLUMN_NAME_1","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"TABLE_SCHEMA_2","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"TABLE_NAME_2","Type":"nvarchar","Size":128,"Nullable":false},
+            {"Name":"PK_COLUMN_NAME_2","Type":"nvarchar","Size":128,"Nullable":true},
+            {"Name":"constraint_object_id","Type":"int","Size":4,"Nullable":false},
+            {"Name":"constraint_column_id","Type":"int","Size":4,"Nullable":false}
+          ],
+          "RowCount": 0,
+          "Rows": []
+        }
+      ]
+    },
+    {
+      "Id": "sql    type_zoo values",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"c_tinyint","Type":"tinyint","Size":1,"Nullable":true},
+            {"Name":"c_smallint","Type":"smallint","Size":2,"Nullable":true},
+            {"Name":"c_int","Type":"int","Size":4,"Nullable":true},
+            {"Name":"c_bigint","Type":"bigint","Size":8,"Nullable":true},
+            {"Name":"c_real","Type":"real","Size":4,"Nullable":true},
+            {"Name":"c_float","Type":"float","Size":8,"Nullable":true},
+            {"Name":"c_decimal","Type":"decimal","Size":17,"Nullable":true},
+            {"Name":"c_bit","Type":"bit","Size":1,"Nullable":true},
+            {"Name":"c_date","Type":"date","Size":3,"Nullable":true},
+            {"Name":"c_time","Type":"time","Size":5,"Nullable":true},
+            {"Name":"c_datetime2","Type":"datetime2","Size":8,"Nullable":true},
+            {"Name":"c_nvarchar","Type":"nvarchar","Size":4000,"Nullable":true},
+            {"Name":"c_varbinary","Type":"varbinary","Size":8000,"Nullable":true},
+            {"Name":"c_guid","Type":"uniqueidentifier","Size":16,"Nullable":true}
+          ],
+          "RowCount": 2,
+          "Rows": [
+            ["200","-12345","123456789","9000000000","1.5","2.25","12345.67","True","2024-02-29 00:00:00.0000000","13:14:15","2024-02-29 13:14:15.1234560","héllo","0xCAFE","6F9619FF-8B86-D011-B42D-00C04FC964FF"],
+            [null,null,null,null,null,null,null,null,null,null,null,null,null,null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "odbc   type_zoo values",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"c_tinyint","Type":"SQL_TINYINT","Size":3,"Nullable":true},
+            {"Name":"c_smallint","Type":"SQL_SMALLINT","Size":5,"Nullable":true},
+            {"Name":"c_int","Type":"SQL_INTEGER","Size":10,"Nullable":true},
+            {"Name":"c_bigint","Type":"SQL_BIGINT","Size":19,"Nullable":true},
+            {"Name":"c_real","Type":"SQL_REAL","Size":24,"Nullable":true},
+            {"Name":"c_float","Type":"SQL_FLOAT","Size":53,"Nullable":true},
+            {"Name":"c_decimal","Type":"SQL_DECIMAL","Size":10,"Nullable":true},
+            {"Name":"c_bit","Type":"SQL_BIT","Size":1,"Nullable":true},
+            {"Name":"c_date","Type":"SQL_TYPE_DATE","Size":10,"Nullable":true},
+            {"Name":"c_time","Type":"SQL_SS_TIME2","Size":16,"Nullable":true},
+            {"Name":"c_datetime2","Type":"SQL_TYPE_TIMESTAMP","Size":27,"Nullable":true},
+            {"Name":"c_nvarchar","Type":"SQL_WVARCHAR","Size":4000,"Nullable":true},
+            {"Name":"c_varbinary","Type":"SQL_VARBINARY","Size":8000,"Nullable":true},
+            {"Name":"c_guid","Type":"SQL_GUID","Size":36,"Nullable":true}
+          ],
+          "RowCount": 2,
+          "Rows": [
+            ["200","-12345","123456789","9000000000","1.5","2.25","12345.67","1","2024-02-29","13:14:15.0000000","2024-02-29 13:14:15.1234560","héllo","CAFE","6F9619FF-8B86-D011-B42D-00C04FC964FF"],
+            [null,null,null,null,null,null,null,null,null,null,null,null,null,null]
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "oledb  type_zoo values",
+      "Error": null,
+      "Sets": [
+        {
+          "Columns": [
+            {"Name":"c_tinyint","Type":"DBTYPE_UI1","Size":1,"Nullable":true},
+            {"Name":"c_smallint","Type":"DBTYPE_I2","Size":2,"Nullable":true},
+            {"Name":"c_int","Type":"DBTYPE_I4","Size":4,"Nullable":true},
+            {"Name":"c_bigint","Type":"DBTYPE_I8","Size":8,"Nullable":true},
+            {"Name":"c_real","Type":"DBTYPE_R4","Size":4,"Nullable":true},
+            {"Name":"c_float","Type":"DBTYPE_R8","Size":8,"Nullable":true},
+            {"Name":"c_decimal","Type":"DBTYPE_NUMERIC","Size":19,"Nullable":true},
+            {"Name":"c_bit","Type":"DBTYPE_BOOL","Size":2,"Nullable":true},
+            {"Name":"c_date","Type":"DBTYPE_DBDATE","Size":6,"Nullable":true},
+            {"Name":"c_time","Type":"DBTYPE_VARIANT","Size":12,"Nullable":true},
+            {"Name":"c_datetime2","Type":"DBTYPE_DBTIMESTAMP","Size":16,"Nullable":true},
+            {"Name":"c_nvarchar","Type":"DBTYPE_WVARCHAR","Size":4000,"Nullable":true},
+            {"Name":"c_varbinary","Type":"DBTYPE_VARBINARY","Size":8000,"Nullable":true},
+            {"Name":"c_guid","Type":"DBTYPE_GUID","Size":16,"Nullable":true}
+          ],
+          "RowCount": 2,
+          "Rows": [
+            ["200","-12345","123456789","9000000000","1.5","2.25","12345.67","True","2024-02-29 00:00:00.0000000","13:14:15.0000000","2024-02-29 13:14:15.1234560","héllo","0xCAFE","6F9619FF-8B86-D011-B42D-00C04FC964FF"],
+            [null,null,null,null,null,null,null,null,null,null,null,null,null,null]
+          ]
+        }
+      ]
+    }
+  ]
+}

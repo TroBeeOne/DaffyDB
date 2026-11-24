@@ -1,0 +1,408 @@
+# T-SQL that DaffyDB translates, with the answer SQL Server gives. verify-tsql.ps1 runs each case
+# through DaffyDB and compares the rows. "Ran without an error" proves nothing here: every case
+# below that is about a wrong answer used to run cleanly.
+#
+# The expected rows came from SQL Server itself (LocalDB 17.0, us_english), and
+# `verify-tsql.ps1 -Oracle` reruns the cases there to check them again. Every case is written to run
+# unchanged on both, which is why the data comes from VALUES lists rather than tables.
+#
+#   ## name [flags]     starts a case; the SQL follows
+#   => a | b            one expected row; columns are separated by " | ", NULL is NULL, '' is empty
+#   cols: a | b         expected column names, checked only when the case says [names]
+#
+# Flags: [names] also compares column names. [daffy] is DaffyDB-only, with no SQL Server
+# equivalent to check against. [differs] is a known, documented difference: the expected rows are
+# DaffyDB's, and -Oracle shows SQL Server's alongside.
+#
+# Values are compared as text: dates as yyyy-MM-dd[ HH:mm:ss[.fff]], decimals without trailing
+# zeros, bit as 1 or 0.
+
+## weekday counts Sunday as 1
+SELECT DATEPART(weekday, CAST('2026-10-04' AS date)), DATEPART(dw, CAST('2026-10-10' AS date)), DATEPART(weekday, CAST('2026-10-05' AS date))
+=> 1 | 7 | 2
+
+## week of the year starts on Sunday, with 1 January in week 1
+SELECT DATEPART(week, CAST('2026-01-03' AS date)), DATEPART(wk, CAST('2026-01-04' AS date)), DATEPART(ww, CAST('2026-12-31' AS date)), DATEPART(week, CAST('2023-01-01' AS date))
+=> 1 | 2 | 53 | 1
+
+## iso_week is the ISO week
+SELECT DATEPART(iso_week, CAST('2026-01-04' AS date)), DATEPART(isowk, CAST('2027-01-01' AS date))
+=> 1 | 53
+
+## DATENAME of week and weekday
+SELECT DATENAME(week, CAST('2026-01-04' AS date)), DATENAME(weekday, CAST('2026-10-04' AS date)), DATENAME(month, CAST('2026-10-04' AS date))
+=> 2 | Sunday | October
+
+## sub-second parts are within the second
+SELECT DATEPART(millisecond, CAST('2026-10-04 13:45:12.345' AS datetime2)), DATEPART(microsecond, CAST('2026-10-04 13:45:12.345678' AS datetime2)), DATEPART(second, CAST('2026-10-04 13:45:12.345' AS datetime2))
+=> 345 | 345678 | 12
+
+## DATEDIFF week counts Sundays crossed
+SELECT DATEDIFF(week, '2026-10-03', '2026-10-04'), DATEDIFF(week, '2026-10-04', '2026-10-10'), DATEDIFF(wk, '2026-10-04', '2026-10-11'), DATEDIFF(week, '2026-10-11', '2026-10-04')
+=> 1 | 0 | 1 | -1
+
+## DATEDIFF with two string literals
+SELECT DATEDIFF(day, '2026-01-01', '2026-10-04'), DATEDIFF(month, '2026-01-31', '2026-02-01'), DATEDIFF(year, '2025-12-31', '2026-01-01'), DATEDIFF(hour, '2026-10-04 10:59', '2026-10-04 11:00')
+=> 276 | 1 | 1 | 1
+
+## DATEDIFF_BIG
+SELECT DATEDIFF_BIG(second, '2020-01-01', '2024-01-01')
+=> 126230400
+
+## DATEADD, DATEPART and EOMONTH on string literals
+SELECT DATEADD(day, 1, '2026-10-04'), DATEADD(month, 1, '2026-01-31'), DATEPART(year, '2026-10-04'), EOMONTH('2026-02-10')
+=> 2026-10-05 | 2026-02-28 | 2026 | 2026-02-28
+
+## DATEADD with dayofyear and weekday adds days
+SELECT DATEADD(dy, 1, CAST('2026-10-04' AS date)), DATEADD(dw, 2, CAST('2026-10-04' AS date))
+=> 2026-10-05 | 2026-10-06
+
+## CONVERT date styles from a date
+SELECT CONVERT(varchar(10), CAST('2026-10-04' AS date), 101), CONVERT(varchar(8), CAST('2026-10-04' AS date), 112), CONVERT(varchar(10), CAST('2026-10-04' AS date), 103), CONVERT(varchar(10), CAST('2026-10-04' AS date), 23), CONVERT(varchar(10), CAST('2026-10-04' AS date), 1)
+=> 10/04/2026 | 20261004 | 04/10/2026 | 2026-10-04 | 10/04/26
+
+## CONVERT styles 0 and 100 from a datetime2
+SELECT CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 0), CONVERT(varchar(30), CAST('2026-10-04 09:05:02.347' AS datetime2), 100), CONVERT(varchar(30), CAST('2026-10-04 12:05:02' AS datetime2), 100)
+=> Oct  4 2026  1:05PM | Oct  4 2026  9:05AM | Oct  4 2026 12:05PM
+
+## CONVERT styles 1 to 7
+SELECT CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 2), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 3), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 4), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 5), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 6), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 7)
+=> 26.10.04 | 04/10/26 | 04.10.26 | 04-10-26 | 04 Oct 26 | Oct 04, 26
+
+## CONVERT styles 102 to 107
+SELECT CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 102), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 104), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 105), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 106), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 107)
+=> 2026.10.04 | 04.10.2026 | 04-10-2026 | 04 Oct 2026 | Oct 04, 2026
+
+## CONVERT time styles 8, 108, 14, 114 and 24
+SELECT CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 8), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 108), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 14), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 114), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 24)
+=> 13:05:02 | 13:05:02 | 13:05:02.3470000 | 13:05:02.3470000 | 13:05:02
+
+## CONVERT styles 9 and 109
+SELECT CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 9), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 109)
+=> Oct  4 2026  1:05:02.3470000PM | Oct  4 2026  1:05:02.3470000PM
+
+## CONVERT styles 10 to 13
+SELECT CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 10), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 110), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 11), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 111), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 12), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 13), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 113)
+=> 10-04-26 | 10-04-2026 | 26/10/04 | 2026/10/04 | 261004 | 04 Oct 2026 13:05:02.3470000 | 04 Oct 2026 13:05:02.3470000
+
+## CONVERT styles 20 to 25, 120, 121
+SELECT CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 20), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 120), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 21), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 121), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 22), CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 25), CONVERT(varchar(30), CAST('2026-10-04 13:05:02' AS datetime2), 121)
+=> 2026-10-04 13:05:02 | 2026-10-04 13:05:02 | 2026-10-04 13:05:02.3470000 | 2026-10-04 13:05:02.3470000 | 10/04/26  1:05:02 PM | 2026-10-04 13:05:02.3470000 | 2026-10-04 13:05:02.0000000
+
+## CONVERT styles 126 and 127 drop a zero fraction
+SELECT CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime2), 126), CONVERT(varchar(30), CAST('2026-10-04 13:05:02' AS datetime2), 126), CONVERT(varchar(30), CAST('2026-10-04 13:05:02' AS datetime2), 127)
+=> 2026-10-04T13:05:02.3470000 | 2026-10-04T13:05:02 | 2026-10-04T13:05:02
+
+## CONVERT a date with styles that have a time
+SELECT CONVERT(varchar(30), CAST('2026-10-04' AS date), 120), CONVERT(varchar(30), CAST('2026-10-04' AS date), 0), CONVERT(varchar(30), CAST('2026-10-04' AS date), 126), CONVERT(varchar(30), CAST('2026-10-04' AS date), 113)
+=> 2026-10-04 | Oct  4 2026 | 2026-10-04 | 04 Oct 2026
+
+## CONVERT a time
+SELECT CONVERT(varchar(8), CAST('13:45:12' AS time), 108), CONVERT(varchar(30), CAST('13:05:02' AS time), 0), CONVERT(varchar(30), CAST('13:05:02' AS time), 22), CONVERT(varchar(30), CAST('13:05:02' AS time), 120), CONVERT(varchar(30), CAST('13:05:02.25' AS time), 126)
+=> 13:45:12 | 1:05PM |  1:05:02 PM | 13:05:02 | 13:05:02.2500000
+
+## CONVERT a time-only style from a date is an error
+SELECT CONVERT(varchar(30), CAST('2026-10-04' AS date), 108)
+=> error: Error converting data type date to varchar.
+
+## CONVERT a datetime keeps three digits on SQL Server [differs]
+SELECT CONVERT(varchar(30), CAST('2026-10-04 13:05:02.347' AS datetime), 121)
+=> 2026-10-04 13:05:02.3470000
+
+## CONVERT style on text leaves the text alone
+SELECT CONVERT(varchar(10), '2026-10-04', 101), CONVERT(varchar(10), 12345, 101)
+=> 2026-10-04 | 12345
+
+## CONVERT parses text in the style's order
+SELECT CONVERT(date, '04/10/2026', 103), CONVERT(date, '10/04/2026', 101), CONVERT(datetime, '20261004', 112), CONVERT(date, '4/10/2026', 103), CONVERT(datetime, '04/10/2026 13:45', 103)
+=> 2026-10-04 | 2026-10-04 | 2026-10-04 | 2026-10-04 | 2026-10-04 13:45:00
+
+## CONVERT reads a two-digit year by SQL Server's 2049 cutoff
+SELECT CONVERT(date, '01/01/49', 1), CONVERT(date, '01/01/50', 1), CONVERT(date, '01/01/68', 1), CONVERT(date, '01/01/69', 1), CONVERT(datetime, '31/12/55 08:30', 3), CONVERT(date, '550102', 12), TRY_CONVERT(date, '04-05-61', 10)
+=> 2049-01-01 | 1950-01-01 | 1968-01-01 | 1969-01-01 | 1955-12-31 08:30:00 | 1955-01-02 | 1961-04-05
+
+## CONVERT with a style on a variable
+DECLARE @d date = '2026-10-04'; SELECT CONVERT(varchar(10), @d, 101)
+=> 10/04/2026
+
+## TRY_CONVERT
+SELECT TRY_CONVERT(int, '12345'), TRY_CONVERT(int, 'abc'), TRY_CONVERT(date, '31/02/2026', 103), TRY_CONVERT(varchar(10), CAST('2026-10-04' AS date), 101), TRY_CONVERT(date, '04/10/2026', 103)
+=> 12345 | NULL | NULL | 10/04/2026 | 2026-10-04
+
+## varchar(n) cuts the text
+SELECT CONVERT(varchar(7), CAST('2026-10-04 13:45:00' AS datetime), 120), CAST('abcdef' AS varchar(3)), CAST('abcdef' AS nvarchar(2)), CONVERT(varchar(4), 'abcdef'), CAST('abcdef' AS varchar(max)), TRY_CAST('abcdef' AS varchar(2))
+=> 2026-10 | abc | ab | abcd | abcdef | ab
+
+## a variable declared varchar(n) is cut too
+DECLARE @s varchar(3) = 'abcdef'; SELECT @s
+=> abc
+
+## LIKE is case-insensitive
+SELECT COUNT(*) FROM (VALUES ('Mountain Bike'), ('Road-650'), ('Helmet')) t(p) WHERE p LIKE 'mountain%'
+=> 1
+
+## LIKE character classes
+SELECT (SELECT COUNT(*) FROM (VALUES ('Mountain Bike'), ('Road-650'), ('Helmet')) t(p) WHERE p LIKE '%[0-9]%'), (SELECT COUNT(*) FROM (VALUES ('Mountain Bike'), ('Road-650'), ('Helmet')) t(p) WHERE p LIKE '[^MR]%'), (SELECT COUNT(*) FROM (VALUES ('Mountain Bike'), ('Road-650'), ('Helmet')) t(p) WHERE p LIKE '[a-m]%'), (SELECT COUNT(*) FROM (VALUES ('Mountain Bike'), ('Road-650'), ('Helmet')) t(p) WHERE p NOT LIKE '%[0-9]%')
+=> 1 | 1 | 2 | 2
+
+## LIKE wildcards, escapes and literal brackets
+SELECT (SELECT COUNT(*) FROM (VALUES ('Road-650'), ('Road 650')) t(p) WHERE p LIKE 'Road_650'), (SELECT COUNT(*) FROM (VALUES ('50%'), ('50x')) t(p) WHERE p LIKE '50!%' ESCAPE '!'), (SELECT COUNT(*) FROM (VALUES ('a_b'), ('axb')) t(p) WHERE p LIKE 'a[_]b'), (SELECT COUNT(*) FROM (VALUES ('5%'), ('55')) t(p) WHERE p LIKE '5[%]'), (SELECT COUNT(*) FROM (VALUES ('a.b'), ('axb')) t(p) WHERE p LIKE 'a.b')
+=> 2 | 1 | 1 | 1 | 1
+
+## LIKE with a parameter
+DECLARE @s nvarchar(20) = N'mountain%'; SELECT COUNT(*) FROM (VALUES ('Mountain Bike'), ('Road-650')) t(p) WHERE p LIKE @s
+=> 1
+
+## JSON_VALUE returns the bare value
+SELECT JSON_VALUE('{"a":"x","b":{"c":2}}', '$.a'), JSON_VALUE('{"a":"x","b":{"c":2}}', '$.b.c'), JSON_VALUE('{"a":"x","b":{"c":2}}', '$.b'), JSON_VALUE('{"b":{"c":2}}', 'lax $.b.c'), JSON_VALUE('{"a":true}', '$.a'), JSON_VALUE('{"a":null}', '$.a'), JSON_VALUE('{"a":1}', '$.missing')
+=> x | 2 | NULL | 2 | true | NULL | NULL
+
+## JSON_QUERY returns objects and arrays only
+SELECT JSON_QUERY('{"a":"x","b":{"c":2}}', '$.b'), JSON_QUERY('{"a":"x","b":{"c":2}}', '$.a'), JSON_QUERY('[1,2]'), JSON_QUERY('{"a":[1,2]}', 'lax $.a')
+=> {"c":2} | NULL | [1,2] | [1,2]
+
+## ISJSON accepts objects and arrays
+SELECT ISJSON('{"a":1}'), ISJSON('[1]'), ISJSON('123'), ISJSON('{x'), ISJSON(NULL), ISJSON('"s"'), ISJSON('  {"a":1}  ')
+=> 1 | 1 | 0 | 0 | NULL | 0 | 1
+
+## ISJSON with a type
+SELECT ISJSON('123', SCALAR), ISJSON('123', VALUE), ISJSON('{}', OBJECT), ISJSON('[]', OBJECT), ISJSON('[]', ARRAY), ISJSON('{x', VALUE)
+=> 1 | 1 | 1 | 0 | 1 | 0
+
+## OPTION (RECOMPILE) leaves the columns alone [names]
+WITH t AS (SELECT 1 AS a, 2 AS b) SELECT * FROM t OPTION (RECOMPILE)
+cols: a | b
+=> 1 | 2
+
+## OPTION with MAXDOP, MAXRECURSION and two hints
+WITH t AS (SELECT 1 AS a) SELECT a FROM t OPTION (MAXDOP 2); WITH t AS (SELECT 2 AS a) SELECT a FROM t OPTION (MAXRECURSION 10, RECOMPILE)
+=> 1
+=> 2
+
+## alias = expression [names]
+WITH t AS (SELECT 1 AS n, 'a' AS f) SELECT Id = n, Name = f, 'Label' = f, [Big Name] = n * 10 FROM t
+cols: Id | Name | Label | Big Name
+=> 1 | a | a | 10
+
+## alias = expression where the alias is a column too [names]
+WITH t AS (SELECT 1 AS n) SELECT n = n * 2 FROM t
+cols: n
+=> 2
+
+## alias = expression with a window function and CASE [names]
+WITH t AS (SELECT 5 AS n UNION ALL SELECT 7) SELECT rn = ROW_NUMBER() OVER (ORDER BY n DESC), size = CASE WHEN n = 5 THEN 'five' ELSE 'other' END FROM t ORDER BY rn
+cols: rn | size
+=> 1 | other
+=> 2 | five
+
+## aliases that are DuckDB keywords [names]
+WITH t AS (SELECT 1 AS n, 'a' AS f) SELECT n Year, f Name, n Value, f Type, n Total, YEAR(CAST('2026-10-04' AS date)) Month FROM t
+cols: Year | Name | Value | Type | Total | Month
+=> 1 | a | 1 | a | 1 | 2026
+
+## a keyword alias after a CASE and in a subquery [names]
+SELECT CASE WHEN 1 = 1 THEN 'y' END Name, (SELECT 1 Value) Data
+cols: Name | Data
+=> y | 1
+
+## DISTINCT, TOP and keyword column names stay columns [names]
+WITH t AS (SELECT 2026 AS Year UNION ALL SELECT 2026) SELECT DISTINCT Year FROM t; WITH t AS (SELECT 2026 AS Year) SELECT TOP 1 Year FROM t
+cols: Year
+=> 2026
+=> 2026
+
+## OUTER APPLY keeps rows with no match
+SELECT p.n, s.v FROM (VALUES (1), (2), (3)) p(n) OUTER APPLY (SELECT TOP 1 x.v FROM (VALUES (1, 'a'), (1, 'b'), (2, 'c')) x(n, v) WHERE x.n = p.n ORDER BY x.v DESC) s ORDER BY p.n
+=> 1 | b
+=> 2 | c
+=> 3 | NULL
+
+## OUTER APPLY with AS and a column list
+SELECT p.n, v.x FROM (VALUES (1), (2)) p(n) OUTER APPLY (VALUES (p.n * 10)) AS v(x) ORDER BY p.n
+=> 1 | 10
+=> 2 | 20
+
+## OUTER APPLY over STRING_SPLIT
+SELECT t.k, s.value FROM (VALUES (1, 'a,b'), (2, NULL)) t(k, l) OUTER APPLY STRING_SPLIT(t.l, ',') s ORDER BY t.k, s.value
+=> 1 | a
+=> 1 | b
+=> 2 | NULL
+
+## CROSS APPLY over STRING_SPLIT
+SELECT t.k, s.value FROM (VALUES (1, 'a-b')) t(k, l) CROSS APPLY STRING_SPLIT(t.l, '-') AS s ORDER BY s.value
+=> 1 | a
+=> 1 | b
+
+## STRING_SPLIT as a table
+SELECT value FROM STRING_SPLIT('a,b,,c', ',')
+=> a
+=> b
+=> ''
+=> c
+
+## STRING_SPLIT in an IN list
+SELECT COUNT(*) FROM (VALUES (1), (2), (3)) t(id) WHERE id IN (SELECT CAST(value AS int) FROM STRING_SPLIT('1,3', ','))
+=> 2
+
+## STRING_SPLIT with an ordinal
+SELECT value, ordinal FROM STRING_SPLIT('x,y', ',', 1) ORDER BY ordinal
+=> x | 1
+=> y | 2
+
+## recursive CTE without RECURSIVE
+WITH seq AS (SELECT 1 AS n UNION ALL SELECT n + 1 FROM seq WHERE n < 5) SELECT COUNT(*), MAX(n) FROM seq
+=> 5 | 5
+
+## recursive CTE with a column list, after a plain one, with MAXRECURSION
+;WITH base AS (SELECT 3 AS top_n), seq (n) AS (SELECT 1 UNION ALL SELECT s.n + 1 FROM seq s JOIN base b ON s.n < b.top_n) SELECT n FROM seq ORDER BY n OPTION (MAXRECURSION 0)
+=> 1
+=> 2
+=> 3
+
+## STRING_AGG WITHIN GROUP
+SELECT k, STRING_AGG(v, ',') WITHIN GROUP (ORDER BY v DESC) FROM (VALUES (1, 'a'), (1, 'c'), (1, 'b'), (2, 'z')) t(k, v) GROUP BY k ORDER BY k
+=> 1 | c,b,a
+=> 2 | z
+
+## ROUND with a third argument truncates
+SELECT ROUND(1.29, 1, 1), ROUND(-1.29, 1, 1), ROUND(1.25, 1, 0), ROUND(1234.5, -2, 1), ROUND(1.25, 1)
+=> 1.2 | -1.2 | 1.3 | 1200 | 1.3
+
+## COLLATE with SQL Server collation names
+SELECT CASE WHEN 'abc' COLLATE Latin1_General_CI_AS = 'ABC' THEN 1 ELSE 0 END, CASE WHEN 'abc' COLLATE Latin1_General_CS_AS = 'ABC' THEN 1 ELSE 0 END, CASE WHEN 'abc' COLLATE SQL_Latin1_General_CP1_CI_AS = 'ABC' THEN 1 ELSE 0 END, CASE WHEN 'abc' COLLATE Latin1_General_BIN2 = 'ABC' THEN 1 ELSE 0 END, CASE WHEN 'a' COLLATE DATABASE_DEFAULT = 'A' THEN 1 ELSE 0 END
+=> 1 | 0 | 1 | 0 | 1
+
+## COLLATE accent-insensitive
+SELECT CASE WHEN N'é' COLLATE Latin1_General_CI_AI = N'E' THEN 1 ELSE 0 END, CASE WHEN N'é' COLLATE Latin1_General_CI_AS = N'E' THEN 1 ELSE 0 END
+=> 1 | 0
+
+## stray semicolons do not end the batch
+;SELECT 1; ;SELECT 2;; SELECT 3
+=> 1
+=> 2
+=> 3
+
+## table hints with arguments are ignored [daffy]
+SELECT COUNT(*) FROM sys.objects WITH (INDEX(1)) WHERE 1 = 0; SELECT COUNT(*) FROM sys.objects WITH (NOLOCK, INDEX = 1, FORCESEEK) WHERE 1 = 0
+=> 0
+=> 0
+
+## FORMAT a datetime
+SELECT FORMAT(CAST('2026-10-04 13:05:02.347' AS datetime), 'yyyy-MM'), FORMAT(CAST('2026-10-04 13:05:02.347' AS datetime), 'MMM yyyy'), FORMAT(CAST('2026-10-04 13:05:02.347' AS datetime), 'ddd', 'en-US'), FORMAT(CAST('2026-10-04 13:05:02.347' AS datetime), 'dddd, MMMM d, yyyy'), FORMAT(CAST('2026-10-04 13:05:02.347' AS datetime), 'M/d/yy h:mm tt'), FORMAT(CAST('2026-10-04 13:05:02.347' AS datetime), 'HH:mm:ss.fff'), FORMAT(CAST('2026-10-04 13:05:02.347' AS datetime), 'yyyyMMdd')
+=> 2026-10 | Oct 2026 | Sun | Sunday, October 4, 2026 | 10/4/26 1:05 PM | 13:05:02.347 | 20261004
+
+## FORMAT standard date formats
+SELECT FORMAT(CAST('2026-10-04 13:05:02' AS datetime), 'd'), FORMAT(CAST('2026-10-04 13:05:02' AS datetime), 'D'), FORMAT(CAST('2026-10-04 13:05:02' AS datetime), 'g'), FORMAT(CAST('2026-10-04 13:05:02' AS datetime), 'Y'), FORMAT(CAST('2026-10-04 13:05:02' AS datetime), 's')
+=> 10/4/2026 | Sunday, October 4, 2026 | 10/4/2026 1:05 PM | October 2026 | 2026-10-04T13:05:02
+
+## FORMAT a date with literal text
+SELECT FORMAT(CAST('2026-10-04' AS date), 'MM/dd/yyyy'), FORMAT(CAST('2026-10-04' AS date), '"Week of" MMM d'), FORMAT(CAST('2026-10-04' AS date), 'yyyy\Q')
+=> 10/04/2026 | Week of Oct 4 | 2026Q
+
+## ISNUMERIC on text
+SELECT v, ISNUMERIC(v) FROM (VALUES (1, '123'), (2, '12.5'), (3, ' 12 '), (4, '-5'), (5, '+5'), (6, '1e5'), (7, '1E+05'), (8, '1d5'), (9, '$'), (10, '$5'), (11, '$-5'), (12, '-$5'), (13, '1,000'), (14, ','), (15, '.'), (16, '-'), (17, '+'), (18, ''), (19, 'abc'), (20, '12abc'), (21, 'inf'), (22, 'NaN'), (23, '0x1A'), (24, '(5)'), (25, '1.2.3'), (26, '5-'), (27, '5$'), (28, '1 000'), (29, '--5'), (30, '.5'), (31, '5.'), (32, '1e'), (33, 'e5'), (34, '1,2,3'), (35, ',,'), (36, '$1,000.50'), (37, '1e400'), (38, '99999999999999999999999'), (39, ' '), (40, '\'), (41, '1e+'), (42, '+.'), (43, '$.'), (44, '1.5e3'), (45, '.e5'), (46, '5 '), (47, '- 5'), (48, '$ 5'), (49, '1,5.2,0')) t(k, v) ORDER BY k
+=> 123 | 1
+=> 12.5 | 1
+=>  12  | 1
+=> -5 | 1
+=> +5 | 1
+=> 1e5 | 1
+=> 1E+05 | 1
+=> 1d5 | 1
+=> $ | 1
+=> $5 | 1
+=> $-5 | 1
+=> -$5 | 1
+=> 1,000 | 1
+=> , | 1
+=> . | 1
+=> - | 1
+=> + | 1
+=> '' | 0
+=> abc | 0
+=> 12abc | 0
+=> inf | 0
+=> NaN | 0
+=> 0x1A | 0
+=> (5) | 0
+=> 1.2.3 | 0
+=> 5- | 0
+=> 5$ | 0
+=> 1 000 | 0
+=> --5 | 0
+=> .5 | 1
+=> 5. | 1
+=> 1e | 0
+=> e5 | 0
+=> 1,2,3 | 1
+=> ,, | 1
+=> $1,000.50 | 1
+=> 1e400 | 0
+=> 99999999999999999999999 | 1
+=>   | 0
+=> \ | 1
+=> 1e+ | 0
+=> +. | 1
+=> $. | 1
+=> 1.5e3 | 1
+=> .e5 | 0
+=> 5  | 1
+=> - 5 | 1
+=> $ 5 | 1
+=> 1,5.2,0 | 1
+
+## ISNUMERIC on typed values
+SELECT ISNUMERIC(CAST(1 AS bit)), ISNUMERIC(CAST(1.5 AS float)), ISNUMERIC(CAST(5 AS money)), ISNUMERIC(GETDATE()), ISNUMERIC(NULL), ISNUMERIC(42), ISNUMERIC(CAST(12.5 AS decimal(5,2)))
+=> 1 | 1 | 1 | 0 | 0 | 1 | 1
+
+## ISDATE on text
+SELECT v, ISDATE(v) FROM (VALUES (1, '2022-12-25'), (2, '12/25/2022'), (3, '25/12/2022'), (4, '12/25/22'), (5, '20221225'), (6, '2022'), (7, '25 Dec 2022'), (8, 'Dec 25 2022'), (9, 'December 25, 2022'), (10, 'dec 25, 2022'), (11, '2022-12-25 10:00:00'), (12, '2022-12-25T10:00:00'), (13, '2022-12-25 10:00:00.123'), (14, '2022-12-25 10:00:00.1234567'), (15, '10:00'), (16, '10:00 PM'), (17, '2022-02-30'), (18, '1752-12-31'), (19, '1753-01-01'), (20, '0001-01-01'), (21, '9999-12-31'), (22, '2022.12.25'), (23, '12-25-2022'), (24, '2022/12/25'), (25, 'abc'), (26, ''), (27, '2022-13-01'), (28, '12.25.2022'), (29, 'Monday'), (30, '2022-12'), (31, '12/2022'), (32, '25-Dec-2022'), (33, 'Sun, 25 Dec 2022'), (34, '2022-12-25Z'), (35, '2022-12-25 10:00:00 +02:00'), (36, '1/2/2022'), (37, 'Dec 2022'), (38, ' 2022-12-25 '), (39, '2022-12-25 25:00'), (40, '12/25/2022 10:00 AM'), (41, '10 PM'), (42, '2022-12-25 10:00'), (43, 'December 2022'), (44, '2/29/2024'), (45, '2/29/2023')) t(k, v) ORDER BY k
+=> 2022-12-25 | 1
+=> 12/25/2022 | 1
+=> 25/12/2022 | 0
+=> 12/25/22 | 1
+=> 20221225 | 1
+=> 2022 | 1
+=> 25 Dec 2022 | 1
+=> Dec 25 2022 | 1
+=> December 25, 2022 | 1
+=> dec 25, 2022 | 1
+=> 2022-12-25 10:00:00 | 1
+=> 2022-12-25T10:00:00 | 1
+=> 2022-12-25 10:00:00.123 | 1
+=> 2022-12-25 10:00:00.1234567 | 0
+=> 10:00 | 1
+=> 10:00 PM | 1
+=> 2022-02-30 | 0
+=> 1752-12-31 | 0
+=> 1753-01-01 | 1
+=> 0001-01-01 | 0
+=> 9999-12-31 | 1
+=> 2022.12.25 | 1
+=> 12-25-2022 | 1
+=> 2022/12/25 | 1
+=> abc | 0
+=> '' | 0
+=> 2022-13-01 | 0
+=> 12.25.2022 | 1
+=> Monday | 0
+=> 2022-12 | 0
+=> 12/2022 | 0
+=> 25-Dec-2022 | 1
+=> Sun, 25 Dec 2022 | 0
+=> 2022-12-25Z | 1
+=> 2022-12-25 10:00:00 +02:00 | 0
+=> 1/2/2022 | 1
+=> Dec 2022 | 1
+=>  2022-12-25  | 1
+=> 2022-12-25 25:00 | 0
+=> 12/25/2022 10:00 AM | 1
+=> 10 PM | 1
+=> 2022-12-25 10:00 | 1
+=> December 2022 | 1
+=> 2/29/2024 | 1
+=> 2/29/2023 | 0
+
+## ISDATE on typed values
+SELECT ISDATE(NULL), ISDATE(GETDATE()), ISDATE(20221225), ISDATE(CAST('2026-10-04 13:45:00' AS datetime))
+=> 0 | 1 | 1 | 1

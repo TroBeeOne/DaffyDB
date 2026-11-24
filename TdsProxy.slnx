@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DaffySQL/DaffySQL.csproj" />
+    <Project Path="src/DaffySQL.Tests/DaffySQL.Tests.csproj" />
+    <Project Path="src/DriverProbe/DriverProbe.csproj" />
+    <Project Path="src/DuckProbe/DuckProbe.csproj" />
+    <Project Path="src/SmoProbe/SmoProbe.csproj" />
+    <Project Path="src/TdsProbe/TdsProbe.csproj" />
+    <Project Path="src/TdsProxy/TdsProxy.csproj" />
+  </Folder>
+</Solution>
